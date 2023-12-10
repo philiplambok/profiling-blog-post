@@ -7,3 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+5.times do |i|
+  user = User.create(name: Faker::Name.name)
+  post = Post.create(user_id: user.id, title: Faker::Lorem.sentence(word_count: 3), content: Faker::Lorem.paragraph(sentence_count: 2))
+
+  (1..6).to_a.sample.times do |i|
+    Comment.create(post_id: post.id, user_id: user.id, message: Faker::Lorem.paragraph(sentence_count: 2))
+  end
+end
